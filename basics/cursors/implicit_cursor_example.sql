@@ -1,13 +1,12 @@
 DECLARE
---declare local variables
-l_dept_id NUMBER;
-l_dept_name VARCHAR2(MAX);
-
+  dept_id HR.DEPARTMENTS.DEPARTMENT_ID%TYPE;
+  dept_name HR.DEPARTMENTS.DEPARTMENT_NAME%TYPE;
+  
 BEGIN
-  SELECT dept_id, dept_name
-  INTO   l_dept_id, l_dept_name
-  FROM   departments
-  WHERE  dept_id = 1;
+  SELECT DEPARTMENT_ID, DEPARTMENT_NAME
+  INTO   dept_id, dept_name
+  FROM HR.DEPARTMENTS
+  WHERE DEPARTMENT_ID = 60;
   
   IF SQL%FOUND THEN
     dbms_output.put_line(SQL%ROWCOUNT);

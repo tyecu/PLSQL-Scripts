@@ -1,0 +1,6 @@
+BEGIN
+  DELETE FROM HR.DEPARTMENTS;
+  IF SQL%FOUND THEN
+    dbms_output.put_line(SQL%ROWCOUNT);
+  END IF;
+END;
