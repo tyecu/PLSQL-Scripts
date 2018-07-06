@@ -1,3 +1,4 @@
+/*This version uses three variable (emp_name, dept_id, and dept_name) to select into. */
 DECLARE
   emp_name VARCHAR2(60);
   dept_id HR.DEPARTMENTS.DEPARTMENT_ID%TYPE;
