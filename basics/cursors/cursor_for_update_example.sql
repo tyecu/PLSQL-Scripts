@@ -1,0 +1,16 @@
+--exclusive lock
+--NOWAIT prevents waiting if table locked
+DECLARE
+  CURSOR cur_move_emp_dept(p_emp_dept HR.EMPLOYEES.DEPARTMENT_ID%TYPE) IS
+    SELECT EMPLOYEE_ID, DEPARTMENT_NAME
+    FROM   HR.DEPARTMENTS, HR.EMPLOYEES
+    WHERE  HR.EMPLOYEES.DEPARTMENT_ID = HR.DEPARTMENTS.DEPARTMENT_ID
+    FOR UPDATE OF DEPARTMENT_ID NOWAIT;
+BEGIN
+  FOR cur_move_emp_dept_var IN cur_move_emp_dept(10) LOOP
+    UPDATE HR.EMPLOYEES
+    SET    DEPARTMENT_ID = 20
+    WHERE CURRENT OF cur_move_emp_dept;
+  END LOOP;
+  COMMIT;
+END;
